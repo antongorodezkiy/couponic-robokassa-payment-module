@@ -6,6 +6,7 @@ class MRobokassaParamsForm extends UFormModel
 	public $Username;
 	public $Signature1;
 	public $Signature2;
+	public $encoding;
 	
 	public static function module()
 	{

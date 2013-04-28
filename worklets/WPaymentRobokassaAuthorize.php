@@ -19,7 +19,8 @@ class WPaymentRobokassaAuthorize extends USystemWorklet
 		$config = array(
 			'Username' => $this->param('Username'),
 			'Signature1' => $this->param('Signature1'),
-			'Signature2' => $this->param('Signature1'),
+			'Signature2' => $this->param('Signature2'),
+			'encoding' => $this->param('encoding'),
 		);
 		$config['Sandbox'] = $this->param('sandbox')?true:false;
 		
@@ -53,14 +54,20 @@ class WPaymentRobokassaAuthorize extends USystemWorklet
 			'description' => implode(', ',$names),
 		));
 		
+		
+		
 		if (app()->request->isAjaxRequest)
 		{
+			// авторизация заказа, заказ
+			wm()->get('payment.order')->authorize($orderId,'');
+			
+			// редирект
 			wm()->get('base.init')->addToJson(array(
 				'redirect' => $result['REDIRECTURL'],
 			));
 		}
 		else
-			app()->request->redirect($redirectUrl);
+			app()->request->redirect($result['REDIRECTURL']);
 
 	}
 	

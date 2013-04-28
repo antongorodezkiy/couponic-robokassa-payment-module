@@ -14,6 +14,7 @@ class Robokassa
 	var $Signature1 = '';
 	var $Signature2 = '';
 	var $Sandbox = '';
+	var $encoding = '';
 	
 	function __construct($config)
 	{
@@ -25,6 +26,7 @@ class Robokassa
 		$this->Username = isset($config['Username']) && $config['Username'] != '' ? $config['Username'] : '';
 		$this->Signature1 = isset($config['Signature1']) && $config['Signature1'] != ''  ? $config['Signature1'] : '';
 		$this->Signature2 = isset($config['Signature2']) && $config['Signature2'] != ''  ? $config['Signature2'] : '';
+		$this->encoding = isset($config['encoding']) && $config['encoding'] != ''  ? $config['encoding'] : '';
 			
 		if($this->Sandbox)
 		{
@@ -59,13 +61,13 @@ class Robokassa
 			$shp_item = $order['ids'];
 		
 		// предлагаемая валюта платежа
-			$in_curr = "PCR";
+			$in_curr = "WMZM";
 		
 		// язык
 			$culture = "ru";
 		
 		// кодировка
-			$encoding = "windows-1251";
+			$encoding = $this->encoding;
 		
 		// формирование подписи, порядок важен
 			$crc_fields['Логин'] = $this->Username;

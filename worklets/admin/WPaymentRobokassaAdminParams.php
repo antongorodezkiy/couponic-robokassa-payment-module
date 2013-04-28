@@ -25,6 +25,7 @@ class WPaymentRobokassaAdminParams extends UParamsWorklet
 						1 => $this->t('Enable')
 					), 'layout' => "{label}\n<fieldset>{input}\n{hint}</fieldset>"
 				),
+				'encoding' => array('type' => 'text', 'label' => $this->t('Encoding')),
 				'<h4>'.$this->t('Robokassa account info').'</h4>',
 				$this->render('apiInfo',null,true),
 				'Username' => array('type' => 'text', 'label' => $this->t('Username')),
